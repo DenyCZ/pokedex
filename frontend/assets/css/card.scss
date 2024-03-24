@@ -2,6 +2,13 @@
   display: flex;
   border: 1px solid darken($secondary, 10%);
 
+  &--back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+  }
+
   &--row {
     flex-direction: row;
   }
@@ -18,8 +25,16 @@
     height: 500px;
     width: 100%;
 
+    position: relative;
+
     img {
       padding: 4rem;
+    }
+
+    &__sound {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
     }
   }
 
@@ -27,15 +42,90 @@
     background-color: $secondary;
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+
     padding: 0.5rem;
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &__text {
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 4px;
+
+      a {
+        color: #000;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &__points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+
+      margin-top: 1rem;
+
+      &__row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        font-weight: 700;
+
+        .progress {
+          display: flex;
+          flex: 1 1 0;
+          border-radius: 1.25rem;
+          height: 0.65rem;
+          width: 100%;
+
+          &__green {
+            background: #71c1a1;
+          }
+
+          &__blue {
+            background: #9f9fff;
+          }
+        }
+
+        span {
+          width: 100px;
+        }
+      }
+    }
+  }
+
+  &__advanced {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &__box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      width: 100%;
+
+      background-color: $secondary;
+      border: 1px solid $box-shadow;
+
+      padding: 1rem;
 
       span {
         font-weight: 700;

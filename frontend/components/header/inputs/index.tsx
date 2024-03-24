@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 export const HeaderInputs = () => {
   const { setView } = useViewStore();
-  const { setSearch } = usePokemonStore();
+  const { setSearch, setFilterOptions, filterOptions } = usePokemonStore();
 
   const [types, setTypes] = useState([]);
 
@@ -29,11 +29,15 @@ export const HeaderInputs = () => {
     fetcher();
   }, []);
 
+  const handleOnChange = (newType: string) => {
+    setFilterOptions(newType, filterOptions.favorite);
+  };
+
   return (
     <div className="header__inputs">
       <TextInput placeholder="Search" onChange={setSearch} />
 
-      <SelectInput options={types} />
+      <SelectInput options={types} onChange={handleOnChange} />
 
       <div className="header__inputs__view">
         <Image

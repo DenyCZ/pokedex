@@ -1,24 +1,21 @@
 import Select, { ActionMeta, SingleValue } from "react-select";
 
-import { usePokemonStore } from "@/stores/pokemon";
-
 interface SelectInputProps {
   options: string[];
+  onChange?: (value: string) => void;
 }
 
-export const SelectInput = ({ options }: SelectInputProps) => {
-  const { filterOptions, setFilterOptions } = usePokemonStore();
-
-  const handleOnChange = (newType: SingleValue<string>) => {
-    const type = (newType?.value as string) ?? "";
-
-    setFilterOptions(type, filterOptions.favorite);
+export const SelectInput = ({ options, onChange }: SelectInputProps) => {
+  const handleOnChange = (newType: { value: string }) => {
+    if (onChange) {
+      const type = (newType?.value as string) ?? "";
+      onChange(type);
+    }
   };
 
   return (
     <Select
       placeholder="Type"
-      defaultValue={filterOptions.type}
       isClearable
       onChange={(newValue) => handleOnChange(newValue)}
       options={options}
