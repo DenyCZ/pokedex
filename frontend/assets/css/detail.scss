@@ -1,0 +1,12 @@
+.detail {
+  &__evolutions {
+    margin-top: 1rem;
+
+    &__grid {
+      display: grid;
+      grid-auto-rows: auto;
+      grid-template-columns: repeat(3, 300px);
+      gap: 1.25rem;
+    }
+  }
+}

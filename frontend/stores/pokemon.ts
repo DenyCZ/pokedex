@@ -15,7 +15,7 @@ type PokemonState = {
 };
 
 export const usePokemonStore = create<PokemonState>((set) => ({
-  limit: 10,
+  limit: 1000,
   offset: 0,
   search: "",
   filterOptions: {

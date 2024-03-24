@@ -13,13 +13,24 @@ import {
   FAVORITE_POKEMON,
   UNFAVORITE_POKEMON,
 } from "@/graphql/favorite-pokemon";
+import { HeartIcon } from "../icons/heart";
+import Link from "next/link";
 
 interface PokemonCardProps {
-  showTypes?: boolean;
   pokemon: Pokemon;
+  showTypes?: boolean;
+  showAdvancedDetails?: boolean;
+  showSound?: boolean;
+  type?: "small" | "big";
 }
 
-export const PokemonCard = ({ pokemon, showTypes }: PokemonCardProps) => {
+export const PokemonCard = ({
+  pokemon,
+  showTypes,
+  showAdvancedDetails,
+  showSound,
+  type = "big",
+}: PokemonCardProps) => {
   const { view } = useViewStore();
 
   const [favorite] = useMutation(FAVORITE_POKEMON);
@@ -37,31 +48,67 @@ export const PokemonCard = ({ pokemon, showTypes }: PokemonCardProps) => {
   return (
     <div className={cardClass}>
       <div className="card__image">
-        <Image
-          src={pokemon.image}
-          alt={pokemon.name}
-          width={300}
-          height={300}
-        />
+        <Link href={`/${pokemon.name}`}>
+          <Image
+            src={pokemon.image}
+            alt={pokemon.name}
+            width={type === "small" ? 150 : 300}
+            height={type === "small" ? 150 : 300}
+          />
+        </Link>
+
+        {showSound && <div className="card__image__sound">SOUND</div>}
       </div>
 
       <div className="card__description">
-        <div className="card__description__text">
-          <span>{pokemon.name}</span>
-          {showTypes && <p>{types}</p>}
+        <div className="card__description__row">
+          <div className="card__description__text">
+            <Link href={`/${pokemon.name}`}>
+              <span>{pokemon.name}</span>
+            </Link>
+            {showTypes && <p>{types}</p>}
+          </div>
+
+          <div
+            className="card__description__favorite"
+            onClick={() =>
+              pokemon.isFavorite
+                ? unfavorite({ variables: { id: pokemon.id } })
+                : favorite({ variables: { id: pokemon.id } })
+            }
+          >
+            <HeartIcon marked={pokemon.isFavorite} />
+          </div>
         </div>
 
-        <div
-          className="card__description__favorite"
-          onClick={() =>
-            pokemon.isFavorite
-              ? unfavorite({ variables: { id: pokemon.id } })
-              : favorite({ variables: { id: pokemon.id } })
-          }
-        >
-          {pokemon.isFavorite ? "❤️" : "<3"}
-        </div>
+        {showAdvancedDetails && (
+          <div className="card__description__points">
+            <div className="card__description__points__row">
+              <div className="progress progress__blue">&nbsp;</div>
+              <span>CP: {pokemon.maxCP} </span>
+            </div>
+
+            <div className="card__description__points__row">
+              <div className="progress progress__green">&nbsp;</div>
+              <span>HP: {pokemon.maxHP}</span>
+            </div>
+          </div>
+        )}
       </div>
+
+      {showAdvancedDetails && (
+        <div className="card__advanced">
+          <div className="card__advanced__box">
+            <span>Weight</span>
+            <p>7.88kg - 69.99kg</p>
+          </div>
+
+          <div className="card__advanced__box">
+            <span>Height</span>
+            <p>7.88kg - 69.99kg</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
