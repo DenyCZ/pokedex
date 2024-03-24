@@ -19,6 +19,18 @@ export const SelectInput = ({ options, onChange }: SelectInputProps) => {
       isClearable
       onChange={(newValue) => handleOnChange(newValue)}
       options={options}
+      styles={{
+        control: (baseStyles, state) => ({
+          ...baseStyles,
+          height: "100%",
+          backgroundColor: "#eee",
+          border: "0",
+          borderRadius: "0",
+          cursor: "pointer",
+          outline: "none",
+          borderColor: "#eee",
+        }),
+      }}
     />
   );
 };

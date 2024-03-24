@@ -37,7 +37,9 @@ export const HeaderInputs = () => {
     <div className="header__inputs">
       <TextInput placeholder="Search" onChange={setSearch} />
 
-      <SelectInput options={types} onChange={handleOnChange} />
+      <div className="header__inputs__select">
+        <SelectInput options={types} onChange={handleOnChange} />
+      </div>
 
       <div className="header__inputs__view">
         <Image
