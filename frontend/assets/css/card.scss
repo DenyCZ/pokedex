@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  border: 1px solid darken($secondary, 10%);
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 500px;
+    width: 100%;
+
+    img {
+      padding: 4rem;
+    }
+  }
+
+  &__description {
+    background-color: $secondary;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+
+      span {
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

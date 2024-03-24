@@ -1,0 +1,34 @@
+.button {
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $primary;
+  cursor: pointer;
+
+  padding-block: 0.5rem;
+
+  transition: 0.125s;
+
+  &--active {
+    background-color: $primary;
+    color: white;
+  }
+
+  &--border {
+    border: 1px solid $primary;
+  }
+
+  &__wfull {
+    width: 100%;
+  }
+
+  &:hover {
+    color: white;
+    background-color: $primary;
+  }
+}

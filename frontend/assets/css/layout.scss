@@ -1,0 +1,17 @@
+.container {
+  padding: 1rem;
+
+  overflow-x: hidden;
+
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  &--list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
