@@ -52,8 +52,13 @@ export const PokemonCard = ({
           <Image
             src={pokemon.image}
             alt={pokemon.name}
-            width={type === "small" ? 150 : 300}
-            height={type === "small" ? 150 : 300}
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            width={type === "small" ? 150 : 250}
+            height={type === "small" ? 150 : 250}
           />
         </Link>
 

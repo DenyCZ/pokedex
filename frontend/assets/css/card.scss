@@ -22,19 +22,19 @@
     justify-content: center;
     align-items: center;
 
-    height: 500px;
+    height: 250px;
     width: 100%;
 
     position: relative;
-
-    img {
-      padding: 4rem;
-    }
 
     &__sound {
       position: absolute;
       bottom: 20px;
       left: 20px;
+    }
+
+    @media screen and (min-width: 768px) {
+      height: 500px;
     }
   }
 
