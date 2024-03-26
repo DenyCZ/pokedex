@@ -20,28 +20,46 @@
     gap: 1rem;
 
     input {
-      width: 60%;
+      width: 50%;
+
+      @media screen and (min-width: 768px) {
+        width: 60%;
+      }
     }
 
     &__select {
-      width: 40%;
-      height: 100%;
+      width: 50%;
+
+      @media screen and (min-width: 768px) {
+        width: 40%;
+      }
     }
 
     &__view {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.25rem;
-      padding: 0.25rem;
 
-      img {
-        cursor: pointer;
-      }
+      &__holder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      img + img {
-        padding: 0.25rem;
-        border-left: 1px solid $box-shadow;
+        padding: 4px;
+        height: 100%;
+        width: 2rem;
+
+        &:first-child {
+          border-right: $border;
+        }
+
+        &:hover {
+          background-color: $secondary;
+        }
+
+        img {
+          cursor: pointer;
+        }
       }
     }
   }

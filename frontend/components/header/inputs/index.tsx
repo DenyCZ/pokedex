@@ -42,20 +42,24 @@ export const HeaderInputs = () => {
       </div>
 
       <div className="header__inputs__view">
-        <Image
-          src={listIcon}
-          height={20}
-          width={20}
-          alt="List view"
-          onClick={() => setView("list")}
-        />
-        <Image
-          src={gridIcon}
-          height={20}
-          width={20}
-          alt="Grid view"
-          onClick={() => setView("grid")}
-        />
+        <div className="header__inputs__view__holder">
+          <Image
+            src={listIcon}
+            height={20}
+            width={20}
+            alt="List view"
+            onClick={() => setView("list")}
+          />
+        </div>
+        <div className="header__inputs__view__holder">
+          <Image
+            src={gridIcon}
+            height={20}
+            width={20}
+            alt="Grid view"
+            onClick={() => setView("grid")}
+          />
+        </div>
       </div>
     </div>
   );

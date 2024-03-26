@@ -30,6 +30,12 @@ export const SelectInput = ({ options, onChange }: SelectInputProps) => {
           cursor: "pointer",
           outline: "none",
           borderColor: "#eee",
+          boxShadow: "none",
+          padding: ".75rem",
+
+          ":hover": {
+            border: "0",
+          },
         }),
       }}
     />
