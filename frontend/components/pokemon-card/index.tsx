@@ -4,8 +4,10 @@ import { useMemo } from "react";
 
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
+import { FETCH_POKEMONS } from "@/graphql/fetch-pokemons";
 
 import { Pokemon } from "@/interface/pokemon";
 import { useViewStore } from "@/stores/view";
@@ -14,7 +16,6 @@ import {
   UNFAVORITE_POKEMON,
 } from "@/graphql/favorite-pokemon";
 import { HeartIcon } from "../icons/heart";
-import Link from "next/link";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -32,9 +33,20 @@ export const PokemonCard = ({
   type = "big",
 }: PokemonCardProps) => {
   const { view } = useViewStore();
+  const { resetStore } = useApolloClient();
 
   const [favorite] = useMutation(FAVORITE_POKEMON);
   const [unfavorite] = useMutation(UNFAVORITE_POKEMON);
+
+  const handleFavorite = () => {
+    if (pokemon.isFavorite) {
+      unfavorite({ variables: { id: pokemon.id } });
+    } else {
+      favorite({ variables: { id: pokemon.id } });
+    }
+
+    resetStore();
+  };
 
   const types = useMemo(() => {
     return pokemon.types.join(", ");
@@ -74,14 +86,7 @@ export const PokemonCard = ({
             {showTypes && <p>{types}</p>}
           </div>
 
-          <div
-            className="card__description__favorite"
-            onClick={() =>
-              pokemon.isFavorite
-                ? unfavorite({ variables: { id: pokemon.id } })
-                : favorite({ variables: { id: pokemon.id } })
-            }
-          >
+          <div className="card__description__favorite" onClick={handleFavorite}>
             <HeartIcon marked={pokemon.isFavorite} />
           </div>
         </div>
