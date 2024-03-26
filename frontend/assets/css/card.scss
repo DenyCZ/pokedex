@@ -1,12 +1,28 @@
 .card {
   display: flex;
-  border: 1px solid darken($secondary, 10%);
+  border: $border;
 
   &--back {
     position: absolute;
     top: 20px;
     left: 20px;
     z-index: 10;
+    border: 0;
+    border-radius: 50px;
+
+    background: transparent;
+
+    display: flex;
+    justify-content: center;
+    place-items: center;
+
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: $transition * 1.5;
+
+    &:hover {
+      background-color: $box-shadow;
+    }
   }
 
   &--row {
@@ -52,6 +68,28 @@
       align-items: center;
     }
 
+    &__favorite {
+      cursor: pointer;
+
+      svg {
+        transition: $transition;
+
+        path {
+          transition: $transition;
+        }
+      }
+
+      &:hover {
+        svg {
+          fill: #f8312f;
+
+          path {
+            stroke: #f8312f;
+          }
+        }
+      }
+    }
+
     &__text {
       display: flex;
       flex-direction: column;
@@ -62,6 +100,12 @@
         color: #000;
         font-weight: 700;
         text-decoration: none;
+
+        transition: $transition;
+
+        &:hover {
+          color: $primary;
+        }
       }
 
       p {
