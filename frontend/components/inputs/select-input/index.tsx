@@ -6,8 +6,9 @@ interface SelectInputProps {
 }
 
 export const SelectInput = ({ options, onChange }: SelectInputProps) => {
-  const handleOnChange = (newType: { value: string }) => {
+  const handleOnChange = (newType: unknown) => {
     if (onChange) {
+      //@ts-ignore
       const type = (newType?.value as string) ?? "";
       onChange(type);
     }
