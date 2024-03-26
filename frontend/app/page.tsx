@@ -6,7 +6,7 @@ import { DataView } from "@/components/views/data";
 import { PokemonCard } from "@/components/pokemon-card";
 
 import { Pokemon, PokemonConnection } from "@/interface/pokemon";
-import { FETCH_POKEMONS } from "@/graphql/fetch-pokemon";
+import { FETCH_POKEMONS } from "@/graphql/fetch-pokemons";
 
 import { usePokemonStore } from "@/stores/pokemon";
 

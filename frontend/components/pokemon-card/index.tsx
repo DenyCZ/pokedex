@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useApolloClient, useMutation } from "@apollo/client";
-import { FETCH_POKEMONS } from "@/graphql/fetch-pokemons";
 
 import { Pokemon } from "@/interface/pokemon";
 import { useViewStore } from "@/stores/view";
