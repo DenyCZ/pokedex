@@ -12,8 +12,8 @@ export const HeartIcon = ({
   return (
     <svg
       fill={marked ? "#F8312F" : "transparent"}
-      height={`${height}px`}
-      width={`${width}px`}
+      height={height}
+      width={width}
       viewBox="0 0 24 24"
     >
       <path

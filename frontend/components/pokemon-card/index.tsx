@@ -16,6 +16,8 @@ import {
   FAVORITE_POKEMON,
   UNFAVORITE_POKEMON,
 } from "@/graphql/favorite-pokemon";
+import { useAudio } from "@/hooks/use-audio";
+import { SpeakerIcon } from "../icons/speaker";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -30,9 +32,11 @@ export const PokemonCard = ({
   showAdvancedDetails,
   showSound,
 }: PokemonCardProps) => {
-  const { view } = useViewStore();
   const path = usePathname();
+  const { view } = useViewStore();
   const { resetStore } = useApolloClient();
+
+  const { play } = useAudio(pokemon.sound);
 
   const [favorite] = useMutation(FAVORITE_POKEMON);
   const [unfavorite] = useMutation(UNFAVORITE_POKEMON);
@@ -72,7 +76,11 @@ export const PokemonCard = ({
           />
         </Link>
 
-        {showSound === true && <div className="card__image__sound">SOUND</div>}
+        {showSound === true && (
+          <div className="card__image__sound" onClick={play}>
+            <SpeakerIcon />
+          </div>
+        )}
       </div>
 
       <div className="card__description">
