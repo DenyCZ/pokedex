@@ -5,15 +5,8 @@ import { PokemonCard } from "@/components/pokemon-card";
 import { BackButton } from "@/components/inputs/button-back";
 import { FETCH_POKEMON_BY_NAME } from "@/graphql/fetch-pokemon-name";
 import { Pokemon } from "@/interface/pokemon";
-import { useViewStore } from "@/stores/view";
 
 export default function PokemonPage({ params }: { params: { slug: string } }) {
-  const { view, setView } = useViewStore();
-
-  if (view === "list") {
-    setView("grid");
-  }
-
   const { data } = useSuspenseQuery<{ pokemonByName: Pokemon }>(
     FETCH_POKEMON_BY_NAME,
     {

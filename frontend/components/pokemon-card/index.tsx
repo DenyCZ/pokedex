@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { useApolloClient, useMutation } from "@apollo/client";
 
@@ -30,6 +31,7 @@ export const PokemonCard = ({
   showSound,
 }: PokemonCardProps) => {
   const { view } = useViewStore();
+  const path = usePathname();
   const { resetStore } = useApolloClient();
 
   const [favorite] = useMutation(FAVORITE_POKEMON);
@@ -51,8 +53,8 @@ export const PokemonCard = ({
 
   const cardClass = classNames(
     {
-      "card--column": view === "grid",
-      "card--row": view === "list",
+      "card--column": view === "grid" || path !== "/",
+      "card--row": view === "list" && path === "/",
     },
     "card"
   );
