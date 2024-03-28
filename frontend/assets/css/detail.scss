@@ -5,7 +5,7 @@
     &__grid {
       display: grid;
       grid-auto-rows: auto;
-      grid-template-columns: repeat(3, 300px);
+      grid-template-columns: repeat(3, 18.75rem);
       gap: 1.25rem;
     }
   }

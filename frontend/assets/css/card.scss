@@ -1,11 +1,14 @@
 .card {
+  display: flex;
+  border: $border;
+
   &--back {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 1.25rem;
+    left: 1.25rem;
     z-index: 10;
     border: 0;
-    border-radius: 50px;
+    border-radius: 3.125rem;
 
     background: transparent;
 
@@ -19,6 +22,147 @@
 
     &:hover {
       background-color: $box-shadow;
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 90% !important;
+      width: 90% !important;
+
+      margin: auto auto;
+    }
+  }
+
+  &__description {
+    display: flex;
+
+    background-color: $secondary;
+    padding: 0.5rem;
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__favorite {
+      cursor: pointer;
+
+      svg {
+        transition: $transition;
+
+        path {
+          transition: $transition;
+        }
+      }
+
+      &:hover {
+        svg {
+          fill: $heart-fill;
+
+          path {
+            stroke: $heart-fill;
+          }
+        }
+      }
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.25rem;
+
+      a {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $black;
+        text-decoration: none;
+
+        transition: $transition;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &__points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+
+      margin-top: 1rem;
+
+      &__row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        font-weight: 700;
+
+        .progress {
+          display: flex;
+          flex: 1 1 0;
+          border-radius: 1.25rem;
+          height: 0.625rem;
+          width: 100%;
+
+          &__green {
+            background: $primary;
+          }
+
+          &__blue {
+            background: $progress-bar;
+          }
+        }
+
+        span {
+          width: 6.25rem;
+        }
+      }
+    }
+
+    &__advanced {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      &__box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        width: 100%;
+
+        background-color: $secondary;
+        border: $border;
+
+        padding: 1rem;
+
+        span {
+          font-weight: 700;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
     }
   }
 }
