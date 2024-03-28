@@ -9,9 +9,9 @@ interface SelectInputProps {
 
 export const SelectInput = ({ options, onChange }: SelectInputProps) => {
   const handleOnChange = (option: SingleValue<string>) => {
-    if (onChange !== undefined && option !== null) {
+    if (onChange !== undefined) {
       const newType = option as unknown as Option;
-      onChange(newType.value);
+      onChange(newType === null ? "" : newType.value);
     }
   };
 
