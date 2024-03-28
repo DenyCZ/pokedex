@@ -1,13 +1,13 @@
 import classNames from "classnames";
 
 interface ButtonProps {
-  onClick?: () => void;
+  children: React.ReactNode;
 
   border?: boolean;
   active?: boolean;
   fullWidth?: boolean;
 
-  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export const Button = (props: ButtonProps) => {

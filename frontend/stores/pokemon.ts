@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type PokemonState = {
+interface PokemonState {
   limit: number;
   offset: number;
   search: string;
@@ -12,7 +12,7 @@ type PokemonState = {
   setOffset: (offset: number) => void;
   setSearch: (search: string) => void;
   setFilterOptions: (type: string, favorite: boolean) => void;
-};
+}
 
 export const usePokemonStore = create<PokemonState>((set) => ({
   limit: 1000,

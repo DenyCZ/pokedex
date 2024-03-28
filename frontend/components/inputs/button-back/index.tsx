@@ -9,7 +9,7 @@ export const BackButton = () => {
 
   return (
     <button className="card--back" onClick={() => router.back()}>
-      <Image src={backArrow} width={20} height={20} alt="back" />
+      <Image src={backArrow} width={20} height={20} alt="Go back" />
     </button>
   );
 };

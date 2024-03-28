@@ -14,7 +14,7 @@ interface PokemonEvolutionRequirement {
   name: string;
 }
 
-export interface Pokemon {
+interface Pokemon {
   id: string;
   number: number;
   name: string;
@@ -38,7 +38,7 @@ export interface Pokemon {
   isFavorite: boolean;
 }
 
-export interface PokemonConnection {
+interface PokemonConnection {
   limit: number;
   offset: number;
   count: number;
@@ -73,3 +73,5 @@ interface Root {
   query: Query;
   mutation: Mutation;
 }
+
+export type { Pokemon, PokemonConnection };

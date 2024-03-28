@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { debounce } from "radash";
 
 interface InputProps {
@@ -6,7 +7,7 @@ interface InputProps {
 }
 
 export const TextInput = (props: InputProps) => {
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (props.onChange) {
       props.onChange?.(e.target.value);
     }

@@ -1,4 +1,6 @@
-import Select, { ActionMeta, SingleValue } from "react-select";
+import Select, { SingleValue } from "react-select";
+
+type Option = { value: string; label: string };
 
 interface SelectInputProps {
   options: string[];
@@ -6,11 +8,10 @@ interface SelectInputProps {
 }
 
 export const SelectInput = ({ options, onChange }: SelectInputProps) => {
-  const handleOnChange = (newType: unknown) => {
-    if (onChange) {
-      //@ts-ignore
-      const type = (newType?.value as string) ?? "";
-      onChange(type);
+  const handleOnChange = (option: SingleValue<string>) => {
+    if (onChange !== undefined && option !== null) {
+      const newType = option as unknown as Option;
+      onChange(newType.value);
     }
   };
 
@@ -21,7 +22,7 @@ export const SelectInput = ({ options, onChange }: SelectInputProps) => {
       onChange={(newValue) => handleOnChange(newValue)}
       options={options}
       styles={{
-        control: (baseStyles, state) => ({
+        control: (baseStyles) => ({
           ...baseStyles,
           height: "100%",
           backgroundColor: "#eee",

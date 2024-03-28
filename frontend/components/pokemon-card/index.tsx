@@ -15,14 +15,12 @@ import {
   FAVORITE_POKEMON,
   UNFAVORITE_POKEMON,
 } from "@/graphql/favorite-pokemon";
-import { HeartIcon } from "../icons/heart";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
   showTypes?: boolean;
   showAdvancedDetails?: boolean;
   showSound?: boolean;
-  type?: "small" | "big";
 }
 
 export const PokemonCard = ({
@@ -30,7 +28,6 @@ export const PokemonCard = ({
   showTypes,
   showAdvancedDetails,
   showSound,
-  type = "big",
 }: PokemonCardProps) => {
   const { view } = useViewStore();
   const { resetStore } = useApolloClient();
@@ -49,7 +46,7 @@ export const PokemonCard = ({
   };
 
   const types = useMemo(() => {
-    return pokemon.types.join(", ");
+    return pokemon?.types?.join(", ") ?? "";
   }, [pokemon]);
 
   const cardClass = classNames(
@@ -68,11 +65,12 @@ export const PokemonCard = ({
             src={pokemon.image}
             alt={pokemon.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             style={{ objectFit: "contain" }}
           />
         </Link>
 
-        {showSound && <div className="card__image__sound">SOUND</div>}
+        {showSound === true && <div className="card__image__sound">SOUND</div>}
       </div>
 
       <div className="card__description">
@@ -81,7 +79,7 @@ export const PokemonCard = ({
             <Link href={`/${pokemon.name}`}>
               <span>{pokemon.name}</span>
             </Link>
-            {showTypes && <p>{types}</p>}
+            {showTypes === true && <p>{types}</p>}
           </div>
 
           <div className="card__description__favorite" onClick={handleFavorite}>
@@ -89,7 +87,7 @@ export const PokemonCard = ({
           </div>
         </div>
 
-        {showAdvancedDetails && (
+        {showAdvancedDetails === true && (
           <div className="card__description__points">
             <div className="card__description__points__row">
               <div className="progress progress__blue">&nbsp;</div>
@@ -104,7 +102,7 @@ export const PokemonCard = ({
         )}
       </div>
 
-      {showAdvancedDetails && (
+      {showAdvancedDetails === true && (
         <div className="card__advanced">
           <div className="card__advanced__box">
             <span>Weight</span>
