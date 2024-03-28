@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useApolloClient, useMutation } from "@apollo/client";
 
 import { Pokemon } from "@/interface/pokemon";
+import { HeartIcon } from "@/components/icons/heart";
 import { useViewStore } from "@/stores/view";
 import {
   FAVORITE_POKEMON,

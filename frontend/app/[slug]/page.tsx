@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useSuspenseQuery } from "@apollo/client";
 
 import { PokemonCard } from "@/components/pokemon-card";
+import { BackButton } from "@/components/inputs/button-back";
 import { FETCH_POKEMON_BY_NAME } from "@/graphql/fetch-pokemon-name";
 import { Pokemon } from "@/interface/pokemon";
 
@@ -31,7 +32,7 @@ export default function PokemonPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <button className="card--back" onClick={() => router.back()}>
+      <BackButton />
         <Image src={backArrow} width={20} height={20} alt="back" />
       </button>
 
