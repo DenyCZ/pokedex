@@ -12,11 +12,11 @@
 
   padding-block: 0.5rem;
 
-  transition: 0.125s;
+  transition: $transition;
 
   &--active {
     background-color: $primary;
-    color: white;
+    color: $white;
   }
 
   &--border {
@@ -28,7 +28,7 @@
   }
 
   &:hover {
-    color: white;
+    color: $white;
     background-color: $primary;
   }
 }
