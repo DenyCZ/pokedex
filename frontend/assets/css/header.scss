@@ -45,9 +45,11 @@
         justify-content: center;
         align-items: center;
 
-        padding: 4px;
+        padding-inline: 4px;
         height: 100%;
         width: 2rem;
+
+        cursor: pointer;
 
         &:first-child {
           border-right: $border;

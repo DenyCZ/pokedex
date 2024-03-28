@@ -51,10 +51,13 @@ export const PokemonCard = ({
     return pokemon.types.join(", ");
   }, [pokemon]);
 
-  const cardClass = classNames("card", {
-    "card--column": view === "grid",
-    "card--row": view === "list",
-  });
+  const cardClass = classNames(
+    {
+      "card--column": view === "grid",
+      "card--row": view === "list",
+    },
+    "card"
+  );
 
   return (
     <div className={cardClass}>
@@ -63,13 +66,8 @@ export const PokemonCard = ({
           <Image
             src={pokemon.image}
             alt={pokemon.name}
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-            width={type === "small" ? 150 : 250}
-            height={type === "small" ? 150 : 250}
+            fill
+            style={{ objectFit: "contain" }}
           />
         </Link>
 

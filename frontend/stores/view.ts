@@ -1,8 +1,7 @@
 import { AvailableViews } from "@/interface/view";
 import { create } from "zustand";
 
-export const DEFAULT_VIEW = "grid";
-export const DEFAULT_TAB = "all";
+export const DEFAULT_VIEW: AvailableViews = "grid";
 
 interface ViewState {
   view: AvailableViews;

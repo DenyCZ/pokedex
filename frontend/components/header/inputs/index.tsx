@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { SelectInput } from "@/components/inputs/select-input";
@@ -10,7 +11,6 @@ import gridIcon from "@/public/grid-icon.svg";
 import listIcon from "@/public/list-icon.svg";
 
 import fetchTypes from "@/actions/fetch-types";
-import { useEffect, useState } from "react";
 
 export const HeaderInputs = () => {
   const { setView } = useViewStore();
@@ -19,14 +19,14 @@ export const HeaderInputs = () => {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    const fetcher = async () => {
+    const fetchData = async () => {
       const { data } = await fetchTypes();
       setTypes(
         data.pokemonTypes.map((type: string) => ({ value: type, label: type }))
       );
     };
 
-    fetcher();
+    fetchData();
   }, []);
 
   const handleOnChange = (newType: string) => {
@@ -42,23 +42,17 @@ export const HeaderInputs = () => {
       </div>
 
       <div className="header__inputs__view">
-        <div className="header__inputs__view__holder">
-          <Image
-            src={listIcon}
-            height={20}
-            width={20}
-            alt="List view"
-            onClick={() => setView("list")}
-          />
+        <div
+          className="header__inputs__view__holder"
+          onClick={() => setView("list")}
+        >
+          <Image src={listIcon} height={20} width={20} alt="List view" />
         </div>
-        <div className="header__inputs__view__holder">
-          <Image
-            src={gridIcon}
-            height={20}
-            width={20}
-            alt="Grid view"
-            onClick={() => setView("grid")}
-          />
+        <div
+          className="header__inputs__view__holder"
+          onClick={() => setView("grid")}
+        >
+          <Image src={gridIcon} height={20} width={20} alt="Grid view" />
         </div>
       </div>
     </div>
