@@ -1,8 +1,4 @@
 "use client";
-
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-
 import { useSuspenseQuery } from "@apollo/client";
 
 import { PokemonCard } from "@/components/pokemon-card";
@@ -10,11 +6,7 @@ import { BackButton } from "@/components/inputs/button-back";
 import { FETCH_POKEMON_BY_NAME } from "@/graphql/fetch-pokemon-name";
 import { Pokemon } from "@/interface/pokemon";
 
-import backArrow from "@/public/arrow-back.svg";
-
 export default function PokemonPage({ params }: { params: { slug: string } }) {
-  const router = useRouter();
-
   const { data } = useSuspenseQuery<{ pokemonByName: Pokemon }>(
     FETCH_POKEMON_BY_NAME,
     {
@@ -28,13 +20,9 @@ export default function PokemonPage({ params }: { params: { slug: string } }) {
     throw new Error("Error fetching data");
   }
 
-  //TODO: Fetch data for the evolution chain
-
   return (
     <>
       <BackButton />
-        <Image src={backArrow} width={20} height={20} alt="back" />
-      </button>
 
       <PokemonCard
         pokemon={data.pokemonByName}
@@ -43,18 +31,16 @@ export default function PokemonPage({ params }: { params: { slug: string } }) {
         showAdvancedDetails
       />
 
-      <div className="detail__evolutions">
-        <h2>Evolutions</h2>
-        <div className="detail__evolutions__grid">
-          {data.pokemonByName?.evolutions?.map((pokeEvolution: Pokemon) => (
-            <PokemonCard
-              type="small"
-              key={pokeEvolution.id}
-              pokemon={data.pokemonByName}
-            />
-          ))}
+      {data.pokemonByName?.evolutions?.length > 0 && (
+        <div className="detail__evolutions">
+          <h2>Evolutions</h2>
+          <div className="detail__evolutions__grid">
+            {data.pokemonByName?.evolutions?.map((pokeEvolution: Pokemon) => (
+              <PokemonCard key={pokeEvolution.id} pokemon={pokeEvolution} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

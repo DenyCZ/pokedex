@@ -36,6 +36,8 @@ export const FETCH_POKEMON_BY_NAME = gql`
         id
         number
         name
+        image
+        isFavorite
       }
       evolutionRequirements {
         amount
