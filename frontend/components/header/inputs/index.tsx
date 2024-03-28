@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import Image from "next/image";
 
 import { SelectInput } from "@/components/inputs/select-input";
@@ -11,9 +11,10 @@ import gridIcon from "@/public/grid-icon.svg";
 import listIcon from "@/public/list-icon.svg";
 
 import fetchTypes from "@/actions/fetch-types";
+import { AvailableViews } from "@/interface/view";
 
 export const HeaderInputs = () => {
-  const { setView } = useViewStore();
+  const { view, setView } = useViewStore();
   const { setSearch, setFilterOptions, filterOptions } = usePokemonStore();
 
   const [types, setTypes] = useState([]);
@@ -33,6 +34,14 @@ export const HeaderInputs = () => {
     setFilterOptions(newType, filterOptions.favorite);
   };
 
+  const handleSetView = (newView: AvailableViews) => {
+    if (view === newView) return;
+
+    startTransition(() => {
+      setView(newView);
+    });
+  };
+
   return (
     <div className="header__inputs">
       <TextInput placeholder="Search" onChange={setSearch} />
@@ -44,13 +53,13 @@ export const HeaderInputs = () => {
       <div className="header__inputs__view">
         <div
           className="header__inputs__view__holder"
-          onClick={() => setView("list")}
+          onClick={() => handleSetView("list")}
         >
           <Image src={listIcon} height={20} width={20} alt="List view" />
         </div>
         <div
           className="header__inputs__view__holder"
-          onClick={() => setView("grid")}
+          onClick={() => handleSetView("grid")}
         >
           <Image src={gridIcon} height={20} width={20} alt="Grid view" />
         </div>

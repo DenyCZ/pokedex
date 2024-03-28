@@ -1,9 +1,19 @@
 "use client";
+import { startTransition } from "react";
+
 import { Button } from "@/components/inputs/button";
 import { usePokemonStore } from "@/stores/pokemon";
 
 export const HeaderTabs = () => {
   const { filterOptions, setFilterOptions } = usePokemonStore();
+
+  const handleButtonClick = (favorite: boolean) => {
+    if (filterOptions.favorite === favorite) return;
+
+    startTransition(() => {
+      setFilterOptions(filterOptions.type, favorite);
+    });
+  };
 
   return (
     <div className="header__tabs">
@@ -11,7 +21,7 @@ export const HeaderTabs = () => {
         border
         fullWidth
         active={filterOptions.favorite === false}
-        onClick={() => setFilterOptions(filterOptions.type, false)}
+        onClick={() => handleButtonClick(false)}
       >
         All
       </Button>
@@ -19,7 +29,7 @@ export const HeaderTabs = () => {
         border
         fullWidth
         active={filterOptions.favorite === true}
-        onClick={() => setFilterOptions(filterOptions.type, true)}
+        onClick={() => handleButtonClick(true)}
       >
         Favorites
       </Button>

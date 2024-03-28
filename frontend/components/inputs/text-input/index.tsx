@@ -8,7 +8,7 @@ interface InputProps {
 
 export const TextInput = (props: InputProps) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (props.onChange) {
+    if (props.onChange !== null) {
       props.onChange?.(e.target.value);
     }
   };

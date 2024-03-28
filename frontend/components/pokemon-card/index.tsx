@@ -36,7 +36,7 @@ export const PokemonCard = ({
   const [unfavorite] = useMutation(UNFAVORITE_POKEMON);
 
   const handleFavorite = () => {
-    if (pokemon.isFavorite) {
+    if (pokemon.isFavorite === true) {
       unfavorite({ variables: { id: pokemon.id } });
     } else {
       favorite({ variables: { id: pokemon.id } });
@@ -47,7 +47,7 @@ export const PokemonCard = ({
 
   const types = useMemo(() => {
     return pokemon?.types?.join(", ") ?? "";
-  }, [pokemon]);
+  }, []);
 
   const cardClass = classNames(
     {
