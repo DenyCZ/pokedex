@@ -20,7 +20,7 @@ export const HeaderTabs = () => {
       <Button
         border
         fullWidth
-        active={filterOptions.favorite === false}
+        active={!filterOptions.favorite}
         onClick={() => handleButtonClick(false)}
       >
         All
@@ -28,7 +28,7 @@ export const HeaderTabs = () => {
       <Button
         border
         fullWidth
-        active={filterOptions.favorite === true}
+        active={filterOptions.favorite}
         onClick={() => handleButtonClick(true)}
       >
         Favorites

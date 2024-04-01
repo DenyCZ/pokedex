@@ -7,11 +7,10 @@ import {
   NextSSRApolloClient,
   SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
-import { BASE_URL } from "./constants";
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: BASE_URL,
+    uri: process.env.NEXT_PUBLIC_API_URL,
     fetchOptions: { cache: "no-store" },
   });
 

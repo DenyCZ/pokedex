@@ -1,7 +1,7 @@
 import { startTransition, useEffect, useState } from "react";
 import Image from "next/image";
 
-import { SelectInput } from "@/components/inputs/select-input";
+import { SelectInput, Option } from "@/components/inputs/select-input";
 import { TextInput } from "@/components/inputs/text-input";
 
 import { useViewStore } from "@/stores/view";
@@ -17,11 +17,12 @@ export const HeaderInputs = () => {
   const { view, setView } = useViewStore();
   const { setSearch, setFilterOptions, filterOptions } = usePokemonStore();
 
-  const [types, setTypes] = useState([]);
+  const [types, setTypes] = useState<Option[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await fetchTypes();
+      console.log(data);
       setTypes(
         data.pokemonTypes.map((type: string) => ({ value: type, label: type }))
       );

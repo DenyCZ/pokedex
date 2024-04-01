@@ -25,9 +25,9 @@ export default function Error() {
       <div className="card__description">
         <div className="card__description__row">
           <div className="card__description__text">
-            <span>Who's that Pokemon?!</span>
+            <span>{'Who\'s that Pokemon?!'}</span>
             <p>
-              Sorry, we couldn't find this Pokemon,{" "}
+              {'Sorry, we couldn\'t find this Pokemon, '}
               <Link href="/" className="link">
                 go back & pick again!
               </Link>

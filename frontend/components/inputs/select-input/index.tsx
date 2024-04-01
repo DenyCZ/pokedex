@@ -1,17 +1,17 @@
 import Select, { SingleValue } from "react-select";
 
-type Option = { value: string; label: string };
+export type Option = { value: string; label: string };
 
-interface SelectInputProps {
-  options: string[];
+type SelectInputProps = {
+  options: Option[];
   onChange?: (value: string) => void;
 }
 
+
 export const SelectInput = ({ options, onChange }: SelectInputProps) => {
-  const handleOnChange = (option: SingleValue<string>) => {
+  const handleOnChange = (option: SingleValue<Option>) => {
     if (onChange !== undefined) {
-      const newType = option as unknown as Option;
-      onChange(newType === null ? "" : newType.value);
+      onChange(option === null ? "" : option.value);
     }
   };
 
