@@ -1,4 +1,7 @@
+import { ReactNode } from "react";
+
 import "@/assets/css/styles.scss";
+
 import fetchPokemons from "@/actions/fetch-pokemons";
 import { Pokemon } from "@/interface/pokemon";
 
@@ -13,7 +16,7 @@ export async function generateStaticParams() {
 export default function PokemonPageLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return <div className="container detail">{children}</div>;
 }
